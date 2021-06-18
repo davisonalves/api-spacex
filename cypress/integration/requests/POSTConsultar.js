@@ -15,6 +15,6 @@ function todosUsuarios(params) {
             query: consultaUsers
         },
         failOnStatusCode: false,
-    })
+    });
 }
 export { todosUsuarios }

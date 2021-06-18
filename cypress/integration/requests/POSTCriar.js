@@ -1,20 +1,22 @@
 /// <reference types = "cypress"/>
-it('Criar usuário', () => {
+
+function criarUsuario() {
     var criarUser = `
-mutation{
-        insert_users(objects: {name: "testequatro", rocket: "Thor-Ablestar", timestamp: "2021-06-17", twitter: "teste.twitter.com"}, on_conflict: {constraint: users_pkey, update_columns: id}) {
+    mutation {
+        insert_users(objects: {name: "Davison"}) {
           returning {
-            id
             name
+            }
         }
     }
+    `
+    return cy.request({
+        method: 'POST',
+        url: 'https://api.spacex.land/graphql/',
+        body: {
+        query: criarUser,
+        },
+        failOnStatusCode: false,
+    });
 }
-`
-cy.request({
-    method: 'POST',
-    url: 'https://api.spacex.land/graphql/',
-    body: {
-       query: criarUser
-    }
-})
-});
+export { criarUsuario }

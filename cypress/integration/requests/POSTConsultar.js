@@ -1,16 +1,20 @@
-it('Consulta usuários', () => {
+/// <reference types = "cypress"/>
+
+function todosUsuarios(params) {
     var consultaUsers = `
-{
-    users {
-      id
+    {
+        users {
+          id
+        }
     }
+    `
+    return cy.request({
+        method: 'POST',
+        url: 'https://api.spacex.land/graphql/',
+        body: {
+            query: consultaUsers
+        },
+        failOnStatusCode: false,
+    })
 }
-`
-cy.request({
-    method: 'POST',
-    url: 'https://api.spacex.land/graphql/',
-    body: {
-        query: consultaUsers
-    }
-})
-});
+export { todosUsuarios }

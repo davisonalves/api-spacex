@@ -1,3 +1,4 @@
+/// <reference types = "cypress"/>
 it('Criar usuário', () => {
     var criarUser = `
 mutation{

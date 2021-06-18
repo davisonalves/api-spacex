@@ -14,7 +14,7 @@ function criarUsuario() {
         method: 'POST',
         url: 'https://api.spacex.land/graphql/',
         body: {
-        query: criarUser,
+            query: criarUser,
         },
         failOnStatusCode: false,
     });

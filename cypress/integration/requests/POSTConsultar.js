@@ -1,9 +1,10 @@
 /// <reference types = "cypress"/>
 
-function todosUsuarios(params) {
+function todosUsuarios() {
     var consultaUsers = `
     {
         users {
+          name
           id
         }
     }

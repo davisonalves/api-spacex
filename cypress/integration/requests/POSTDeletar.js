@@ -1,18 +1,22 @@
-it('Deletar usuário', () => {
+/// <reference types = "cypress"/>
+function deletarUsuario(idUsuario) {
     var deletarUser = `
-mutation{
-        delete_users(where: {name: {_eq: "testequatro"}}) {
+    mutation {
+        delete_users(where: {id: {_eq: \"${idUsuario}\"}}) {
           returning {
+            id
             name
+          }
         }
     }
-}
-`
-cy.request({
-    method: 'POST',
-    url: 'https://api.spacex.land/graphql/',
-    body: {
-       query: deletarUser
-    }
-})
-});
+    `
+    return cy.request({
+        method: 'POST',
+        url: '/',
+        body: {
+            query: deletarUser
+        },
+        failOnStatusCode: false,
+    });
+};
+export { deletarUsuario }

@@ -19,5 +19,6 @@
   "homepage": "https://github.com/davisonalves/softplan#readme",
   "devDependencies": {
     "cypress": "^7.5.0"
-  }
+  },
+  "dependencies": {}
 }

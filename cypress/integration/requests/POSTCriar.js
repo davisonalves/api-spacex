@@ -1,10 +1,11 @@
 /// <reference types = "cypress"/>
 
-function criarUsuario() {
+function criarUsuario(nomeUsuario) {
     var criarUser = `
     mutation {
-        insert_users(objects: {name: "Davison"}) {
+        insert_users(objects: {name: "${nomeUsuario}"}) {
           returning {
+            id
             name
             }
         }
@@ -12,11 +13,11 @@ function criarUsuario() {
     `
     return cy.request({
         method: 'POST',
-        url: 'https://api.spacex.land/graphql/',
+        url: '/',
         body: {
             query: criarUser,
         },
         failOnStatusCode: false,
     });
-}
+};
 export { criarUsuario }

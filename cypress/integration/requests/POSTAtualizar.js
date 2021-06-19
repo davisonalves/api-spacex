@@ -1,22 +1,23 @@
 /// <reference types = "cypress"/>
 
-function atualizarUsuario(nomeUsuario) {
+function atualizarUsuario(idUsuario, setNomeUsuario) {
     var atualizarUser = `
     mutation {
-        update_users(_set: {name: "Davison"}, where: {name: {_eq: "${nomeUsuario}"}}) {
+        update_users(where: {id: {_eq: \"${idUsuario}\"}}, _set: {name: "${setNomeUsuario}"}) {
           returning {
+            id
             name
-            }
+          }
         }
-    }
+      }
     `
     return cy.request({
         method: 'POST',
-        url: 'https://api.spacex.land/graphql/',
+        url: '/',
         body: {
             query: atualizarUser
         },
         failOnStatusCode: false,
     });
-}
+};
 export { atualizarUsuario }

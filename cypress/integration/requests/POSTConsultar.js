@@ -1,21 +1,37 @@
 /// <reference types = "cypress"/>
 
-function todosUsuarios() {
+function consultaUsuarios() {
     var consultaUsers = `
     {
         users {
           name
+        }
+    }
+    `
+    return cy.request({
+        method: 'POST',
+        url: '/',
+        body: {
+            query: consultaUsers
+        },
+        failOnStatusCode: false,
+    });
+};
+function consultaUsuario(idUsuario) {
+    var consultaUser = `
+    {
+        users(where: {id: {_eq: ${idUsuario} }}) {
           id
         }
     }
     `
     return cy.request({
         method: 'POST',
-        url: 'https://api.spacex.land/graphql/',
+        url: '/',
         body: {
-            query: consultaUsers
+            query: consultaUser
         },
         failOnStatusCode: false,
     });
-}
-export { todosUsuarios }
+};
+export { consultaUsuarios, consultaUsuario }
